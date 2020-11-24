@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackc19/provider/root_provider.dart';
+import 'package:trackc19/screens/country_list_screen.dart';
 import 'package:trackc19/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,14 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.red,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomeScreen(),
+        initialRoute: HomeScreen.routeName,
+        routes: {
+          HomeScreen.routeName: (context)=> HomeScreen(),
+          CountryListScreen.routeName: (context)=> CountryListScreen(),
+        },
       ),
     );
   }

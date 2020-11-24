@@ -1,17 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:trackc19/screens/country_list_screen.dart';
 import 'package:trackc19/widgets/single_status.dart';
 import 'package:provider/provider.dart';
 import 'package:trackc19/provider/root_provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  static final String routeName = '/';
   @override
   Widget build(BuildContext context) {
     final rootProvider = Provider.of<RootProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.redAccent,
           title: Text('Covid 19 Status'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.list), 
+              onPressed: (){
+                Navigator.pushNamed(context, CountryListScreen.routeName);
+              }
+            )
+          ],
         ),
         body: FutureBuilder(
           future: rootProvider.getStatus(),
