@@ -18,8 +18,13 @@ class SingleStatus extends StatelessWidget {
       flex: flex,
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), 
-            color: color
+            borderRadius: BorderRadius.circular(10),
+            color: color,
+            boxShadow: [BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.1),
+              blurRadius: 15,
+              offset: Offset(0,5)
+            )]
           ),
         padding: EdgeInsets.symmetric(vertical: 30),
         child: Column(

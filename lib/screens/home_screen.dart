@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:trackc19/provider/root_provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  static final String routeName = '/';
+  static final String routeName = '/home';
   @override
   Widget build(BuildContext context) {
     final rootProvider = Provider.of<RootProvider>(context);
@@ -15,11 +15,10 @@ class HomeScreen extends StatelessWidget {
           title: Text('Covid 19 Status'),
           actions: [
             IconButton(
-              icon: Icon(Icons.list), 
-              onPressed: (){
-                Navigator.pushNamed(context, CountryListScreen.routeName);
-              }
-            )
+                icon: Icon(Icons.list),
+                onPressed: () {
+                  Navigator.pushNamed(context, CountryListScreen.routeName);
+                })
           ],
         ),
         body: FutureBuilder(
@@ -74,43 +73,55 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          'Today\'s status',
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
-                      ),
-                      Row(children: [
-                        SingleStatus(
-                          label: 'Today\'s cases',
-                          amount:  snapshot.data['todayCases'],
-                          color: Colors.orangeAccent,
-                        ),
-                        SizedBox(width: 10),
-                        SingleStatus(
-                          label: 'Today\'s death',
-                          amount: snapshot.data['todayDeaths'],
-                          color: Colors.redAccent,
-                        ),
-                      ]),
                       SizedBox(height: 10),
-                      Row(
-                        children: [
-                          SingleStatus(
-                            label: 'Today\'s recovered',
-                            amount: snapshot.data['todayRecovered'],
-                            color: Colors.green[600],
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          color: Colors.orange[100],
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text(
+                                  'Today\'s status',
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                              ),
+                              Row(children: [
+                                SingleStatus(
+                                  label: 'Today\'s cases',
+                                  amount: snapshot.data['todayCases'],
+                                  color: Colors.orangeAccent,
+                                ),
+                                SizedBox(width: 10),
+                                SingleStatus(
+                                  label: 'Today\'s death',
+                                  amount: snapshot.data['todayDeaths'],
+                                  color: Colors.redAccent,
+                                ),
+                              ]),
+                              SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  SingleStatus(
+                                    label: 'Today\'s recovered',
+                                    amount: snapshot.data['todayRecovered'],
+                                    color: Colors.green[600],
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
-                        ],
+                        ),
                       )
                     ],
                   ),
                 ),
               );
-            }else if(snapshot.hasError){
+            } else if (snapshot.hasError) {
               return Text('Error fetching data');
-            }else{
+            } else {
               return Center(
                 child: Container(
                   child: CircularProgressIndicator(),

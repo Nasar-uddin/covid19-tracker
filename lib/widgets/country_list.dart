@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackc19/screens/single_country_data_screen.dart';
 
 class CountryList extends StatelessWidget {
   final countries;
@@ -15,7 +16,12 @@ class CountryList extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5.0),
               child: ListTile(
                 onTap: (){
-                  print('Dam');
+                  // print('Dam');
+                  Navigator.pushNamed(
+                    context, 
+                    SingleCountryDataScreen.routeName,
+                    arguments: countries[index]
+                  );
                 },
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(countries[index]['countryInfo']['flag']),
